@@ -1,0 +1,6 @@
+**ChatBot**
+The chatbot project is an intelligent FAQ system built using Flask for the backend, along with NLTK and scikit-learn for Natural Language Processing (NLP) and machine learning functionalities. 
+Its primary purpose is to answer questions related to Artificial Intelligence (AI) and Machine Learning (ML) by matching user queries with a predefined FAQ knowledge base.The chatbot operates by preprocessing text inputs using various NLP techniques. 
+It leverages tokenization to split text into individual words, removes stopwords (commonly used words like "the" or "is" that do not add much meaning), and applies lemmatization to reduce words to their base form (e.g., "running" becomes "run"). 
+This ensures the text is cleaned and standardized for further processing.For matching user questions to the most relevant FAQ, the system uses TF-IDF (Term Frequency-Inverse Document Frequency) vectorization. This method converts text into numerical vectors, emphasizing words that are more informative in the context of the knowledge base. Once vectorized, the chatbot employs cosine similarity to measure how closely the user's query aligns with the preprocessed FAQ questions.
+The FAQ with the highest similarity score is selected, and its corresponding answer is returned to the user.
