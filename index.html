@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #chat-container {
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #chat {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #chat p {
+            margin: 5px 0;
+        }
+        #user-input {
+            width: calc(100% - 70px);
+            padding: 10px;
+            margin-right: 5px;
+        }
+        #send-btn {
+            padding: 10px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #send-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>Chatbot</h1>
+        <div id="chat">
+            <p><strong>Bot:</strong> Hi there! How can I help you today?</p>
+        </div>
+        <div>
+            <input type="text" id="user-input" placeholder="Type your message here..." />
+            <center><button id="send-btn">Send</button></center>
+        </div>
+    </div>
+
+    <script>
+document.getElementById("send-btn").addEventListener("click", function () {
+    const userInput = document.getElementById("user-input").value.trim();
+    if (!userInput) return;
+
+    // Display user's message
+    addMessage("You", userInput);
+
+    // Generate AI-like response
+    const botResponse = getBotResponse(userInput);
+    setTimeout(() => addMessage("Bot", botResponse), 500); // Delay for realism
+
+    // Clear the input field
+    document.getElementById("user-input").value = "";
+});
+
+// Function to add a message to the chat
+function addMessage(sender, message) {
+    const chat = document.getElementById("chat");
+    const messageElement = document.createElement("p");
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chat.appendChild(messageElement);
+    chat.scrollTop = chat.scrollHeight; // Auto-scroll to the bottom
+}
+
+function getBotResponse(input) {
+    const responses = {
+        "what is website hosting": "Website hosting is a service that stores your website's files and makes them accessible on the internet.",
+        "what types of hosting are there": "There are several types: shared hosting, VPS hosting, dedicated hosting, and cloud hosting. Each serves different needs.",
+        "what is shared hosting": "Shared hosting means your website shares server resources with other websites, making it affordable but less powerful.",
+        "what is a domain name": "A domain name is your website's address, like example.com, that people type into their browser to visit your site.",
+        "what is the difference between a domain and hosting": "A domain is your website's address, while hosting is the server space where your website files are stored.",
+        "what is the cost of hosting a website": "Costs vary depending on the hosting type. Shared hosting can be as low as $3/month, while dedicated hosting may cost $100 or more per month.",
+        "which hosting is best for beginners": "Shared hosting is great for beginners due to its affordability and ease of use.",
+        "what is cloud hosting": "Cloud hosting uses a network of servers to ensure better reliability and scalability. It's ideal for growing websites.",
+        "how do I choose a hosting provider": "Look for providers with good uptime, customer support, scalability, and pricing that suits your needs.",
+        "what is uptime in hosting": "Uptime is the percentage of time a hosting server is online and accessible. A good host offers at least 99.9% uptime.",
+        "do I need ssl for my website": "Yes, an SSL certificate encrypts data and ensures your site is secure. Most hosting providers offer free SSL.",
+        "can I switch hosting providers later": "Yes, you can transfer your website to another host, but it may involve some downtime and technical work.",
+        "what is bandwidth in hosting": "Bandwidth is the amount of data your website can transfer to visitors. High traffic sites need more bandwidth.",
+        "what is cpanel": "cPanel is a web hosting control panel that simplifies managing your website, email, and server settings.",
+        "what is managed hosting": "Managed hosting means the provider handles server maintenance, updates, and security, so you can focus on your website.",
+        "what is vps hosting": "VPS stands for Virtual Private Server. It gives you more resources and control than shared hosting, without the cost of a dedicated server.",
+        "do I need backups for my website": "Yes, backups ensure you can restore your site if something goes wrong. Many hosting providers offer automatic backups.",
+        "what is scalability in hosting": "Scalability refers to how easily your hosting plan can handle increased traffic or website growth.",
+        "how do I transfer my website to a new host": "You need to back up your files, transfer them to the new host, update your domain settings, and test the site.",
+        "what is wordpress hosting": "WordPress hosting is optimized specifically for WordPress websites, offering faster performance and easier management."
+    };
+
+    input = input.toLowerCase(); // Case-insensitive matching
+    for (const key in responses) {
+        if (input.includes(key)) {
+            return responses[key];
+        }
+    }
+
+    return "Sorry, I didn't understand that. Could you try rephrasing?";
+}
+
+
+    </script>
+</body>
+</html>
